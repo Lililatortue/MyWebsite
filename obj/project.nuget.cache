@@ -1,13 +1,22 @@
 {
   "version": 2,
-  "dgSpecHash": "tSpPaPgga6Q9zcxYZNlIVkX5witlbTGDJlvSW55tEhdDRuT819DTRlNU0yvpDdrrv3QaCGTiu6JBlDW2r6v1Jw==",
+  "dgSpecHash": "bn+jTQYjS1Zp7z5WyghUJj+1/FLEyD+gUUn/JNqq3p5tbhlYbYoZvnUAuNTRBAfi6c6bNpLEhXqmkx+eIl6IpQ==",
   "success": true,
   "projectFilePath": "/home/lililatortue/Dev/C#/projects/MyWebsite/MyWebsite.csproj",
   "expectedPackageFiles": [
     "/home/lililatortue/.nuget/packages/microsoft.aspnetcore.openapi/8.0.15/microsoft.aspnetcore.openapi.8.0.15.nupkg.sha512",
+    "/home/lililatortue/.nuget/packages/microsoft.entityframeworkcore/9.0.5/microsoft.entityframeworkcore.9.0.5.nupkg.sha512",
+    "/home/lililatortue/.nuget/packages/microsoft.entityframeworkcore.abstractions/9.0.5/microsoft.entityframeworkcore.abstractions.9.0.5.nupkg.sha512",
+    "/home/lililatortue/.nuget/packages/microsoft.entityframeworkcore.analyzers/9.0.5/microsoft.entityframeworkcore.analyzers.9.0.5.nupkg.sha512",
     "/home/lililatortue/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
-    "/home/lililatortue/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/8.0.0/microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
-    "/home/lililatortue/.nuget/packages/microsoft.extensions.logging.abstractions/8.0.0/microsoft.extensions.logging.abstractions.8.0.0.nupkg.sha512",
+    "/home/lililatortue/.nuget/packages/microsoft.extensions.caching.abstractions/9.0.5/microsoft.extensions.caching.abstractions.9.0.5.nupkg.sha512",
+    "/home/lililatortue/.nuget/packages/microsoft.extensions.caching.memory/9.0.5/microsoft.extensions.caching.memory.9.0.5.nupkg.sha512",
+    "/home/lililatortue/.nuget/packages/microsoft.extensions.dependencyinjection/9.0.5/microsoft.extensions.dependencyinjection.9.0.5.nupkg.sha512",
+    "/home/lililatortue/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/9.0.5/microsoft.extensions.dependencyinjection.abstractions.9.0.5.nupkg.sha512",
+    "/home/lililatortue/.nuget/packages/microsoft.extensions.logging/9.0.5/microsoft.extensions.logging.9.0.5.nupkg.sha512",
+    "/home/lililatortue/.nuget/packages/microsoft.extensions.logging.abstractions/9.0.5/microsoft.extensions.logging.abstractions.9.0.5.nupkg.sha512",
+    "/home/lililatortue/.nuget/packages/microsoft.extensions.options/9.0.5/microsoft.extensions.options.9.0.5.nupkg.sha512",
+    "/home/lililatortue/.nuget/packages/microsoft.extensions.primitives/9.0.5/microsoft.extensions.primitives.9.0.5.nupkg.sha512",
     "/home/lililatortue/.nuget/packages/microsoft.identitymodel.abstractions/8.10.0/microsoft.identitymodel.abstractions.8.10.0.nupkg.sha512",
     "/home/lililatortue/.nuget/packages/microsoft.identitymodel.jsonwebtokens/8.10.0/microsoft.identitymodel.jsonwebtokens.8.10.0.nupkg.sha512",
     "/home/lililatortue/.nuget/packages/microsoft.identitymodel.logging/8.10.0/microsoft.identitymodel.logging.8.10.0.nupkg.sha512",
@@ -17,6 +26,7 @@
     "/home/lililatortue/.nuget/packages/swashbuckle.aspnetcore.swagger/6.6.2/swashbuckle.aspnetcore.swagger.6.6.2.nupkg.sha512",
     "/home/lililatortue/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.6.2/swashbuckle.aspnetcore.swaggergen.6.6.2.nupkg.sha512",
     "/home/lililatortue/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.6.2/swashbuckle.aspnetcore.swaggerui.6.6.2.nupkg.sha512",
+    "/home/lililatortue/.nuget/packages/system.diagnostics.diagnosticsource/9.0.5/system.diagnostics.diagnosticsource.9.0.5.nupkg.sha512",
     "/home/lililatortue/.nuget/packages/system.identitymodel.tokens.jwt/8.10.0/system.identitymodel.tokens.jwt.8.10.0.nupkg.sha512"
   ],
   "logs": []

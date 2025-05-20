@@ -1,7 +1,7 @@
 using System.Security.Cryptography;
 
 
-namespace UserModel;
+namespace logic;
 /*
  * Creation of password 
  * Recommande usage: make sur that as soon as this password goes out of scope it 
