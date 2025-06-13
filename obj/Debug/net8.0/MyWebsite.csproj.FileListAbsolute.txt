@@ -1,0 +1,8 @@
+/home/lililatortue/Dev/C#/projects/MyWebsite/obj/Debug/net8.0/MyWebsite.csproj.AssemblyReference.cache
+/home/lililatortue/Dev/C#/projects/MyWebsite/obj/Debug/net8.0/MyWebsite.GeneratedMSBuildEditorConfig.editorconfig
+/home/lililatortue/Dev/C#/projects/MyWebsite/obj/Debug/net8.0/MyWebsite.AssemblyInfoInputs.cache
+/home/lililatortue/Dev/C#/projects/MyWebsite/obj/Debug/net8.0/MyWebsite.AssemblyInfo.cs
+/home/lililatortue/Dev/C#/projects/MyWebsite/obj/Debug/net8.0/MyWebsite.csproj.CoreCompileInputs.cache
+/home/lililatortue/Dev/C#/projects/MyWebsite/obj/Debug/net8.0/MyWebsite.MvcApplicationPartsAssemblyInfo.cs
+/home/lililatortue/Dev/C#/projects/MyWebsite/obj/Debug/net8.0/MyWebsite.MvcApplicationPartsAssemblyInfo.cache
+/home/lililatortue/Dev/C#/projects/MyWebsite/obj/Debug/net8.0/MyWebsite.sourcelink.json
