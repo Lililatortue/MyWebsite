@@ -1,13 +1,12 @@
-using interfaces.command;
 using wiwi.domain.entities;
 using wiwi.domain.factory;
-using wiwi.infrastructure.repository;
+using wiwi.infrastructure.repository.user;
 
 
+namespace wiwi.interfaces.command.account;
+using MAP = wiwi.infrastructure.map.user;
 
-namespace interfaces.command.account;
 
-using map = wiwi.infrastructure.map.user;
 public record TDeleteAccountAction(String email);
 /*
  * Deletes a user in the db.
@@ -15,12 +14,12 @@ public record TDeleteAccountAction(String email);
  * */
 public class DeleteCommand: ICommand<TDeleteAccountAction>{
   //variables:
-  private readonly UserRepository _repo;
+  private readonly IUserRepository _repo;
   private User? _state;
 
   //constructor:
   
-  public DeleteCommand(UserRepository repo){
+  public DeleteCommand(IUserRepository repo){
     _repo = repo;
   }
 
@@ -37,7 +36,6 @@ public class DeleteCommand: ICommand<TDeleteAccountAction>{
       _state = factory.CreateFromStorage(user);
 
       _repo.Delete(user);
-      await _repo.SaveChangesAsync();
 
       return (200, null);
     } catch(Exception ex) {
@@ -52,8 +50,7 @@ public class DeleteCommand: ICommand<TDeleteAccountAction>{
     if(_state is null) throw new NullReferenceException("state is null");
     
     try {
-      _repo.Create(map.UserModelMapping.ToModel(_state));
-      _repo.SaveChanges();
+      _repo.Create(MAP.UserModelMapping.ToModel(_state));
 
       return (200, null);
     } catch(Exception ex) {

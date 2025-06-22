@@ -1,14 +1,14 @@
-using interfaces.command;
-using interfaces.DTO;
+using wiwi.interfaces.DTO;
+using wiwi.interfaces.command;
 
-using wiwi.infrastructure.repository;
+using wiwi.infrastructure.repository.user;
 using wiwi.infrastructure.models;
 
 using wiwi.domain.entities;
 using wiwi.domain.factory;
 
 namespace interfaces.command.user;
-using map = wiwi.infrastructure.map.user;
+using MAP = wiwi.infrastructure.map.user;
 
 
 public record TBanUserAction(UserDTO dto);
@@ -21,12 +21,12 @@ public record TBanUserAction(UserDTO dto);
 public class BanUserCommand: ICommand<TBanUserAction>{
   //variables
 
-  private readonly UserRepository _repo;
+  private readonly IUserRepository _repo;
   private User? _state; //capture state for undo might check for memento pattern
   
   //constructor
   
-  public BanUserCommand(UserRepository repo){
+  public BanUserCommand(IUserRepository repo){
     _repo = repo; 
 
   }
@@ -48,7 +48,7 @@ public class BanUserCommand: ICommand<TBanUserAction>{
       
       user.SetBannedFlag(true); //ban him
       //TODO:(Ban table)-> reason why, statement said, timespan,
-      _repo.Update(map.UserModelMapping.ToModel(user));
+      _repo.Update(MAP.UserModelMapping.ToModel(user));
       
       return (200, null);
     } catch(Exception) {
@@ -61,8 +61,7 @@ public class BanUserCommand: ICommand<TBanUserAction>{
     if(_state is null) throw new NullReferenceException("State is not captured");
 
     try{
-      _context.Users.Update(_state);
-      _context.SaveChanges();
+      _repo.Update(MAP.UserModelMapping.ToModel(_state));
       return (200, "BanUser commande undone");
 
     } catch(Exception) {

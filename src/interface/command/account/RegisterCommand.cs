@@ -1,15 +1,14 @@
+using wiwi.interfaces.DTO;
 
-using wiwi.infrastructure.repository;
 
-using interfaces.DTO;
 using wiwi.domain.factory;
 using wiwi.domain.entities;
 
+using wiwi.infrastructure.repository.user;
 
+namespace wiwi.interfaces.command.account;
 
-namespace interfaces.command.account;
-
-using map = wiwi.infrastructure.map.user;
+using  MAP = wiwi.infrastructure.map.user;
 
 public record TRegisterAction (UserDTO user, string password);
 
@@ -23,11 +22,11 @@ public record TRegisterAction (UserDTO user, string password);
 public class RegisterCommand: ICommand<TRegisterAction> {
   //variable:
 
-  private readonly UserRepository _repo;
+  private readonly IUserRepository _repo;
   private User? _state; 
   //constructor:
 
-  public RegisterCommand(UserRepository repository){
+  public RegisterCommand(IUserRepository repository){
     _repo = repository;
   }
 
@@ -41,7 +40,7 @@ public class RegisterCommand: ICommand<TRegisterAction> {
       UserEntityFactory factory = new UserEntityFactory();
       var user = factory.CreateFromPasswordString(action.user,action.password);
       _state = user; 
-      _repo.Create(map.UserModelMapping.ToModel(user));
+      _repo.Create(MAP.UserModelMapping.ToModel(user));
 
 
       return (200, null);

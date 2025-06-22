@@ -1,35 +1,42 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
-using interfaces.DTO;
-
-
-
+using wiwi.interfaces.patterns.mediator;
 
 namespace interfaces.controller;
 
 
 [ApiController]
+[Authorize(Roles="admin")]
 [Route("api/user/")]
-public class UserManagmentController{
+public class UserManagmentController: ControllerBase{
+    private readonly CommandMediator<Object> _mediator;  
+    
+    public UserManagmentController(CommandMediator<Object> mediator){
+      _mediator = mediator;
+    }
+    
 
-    //PATCH: api/user/update()
-    [HttpPatch("/privileges")]
-    public async Task<ActionResult> ([FromBody]PrivilegesRequest request ){
-      request.email, request.PRIVILEGES;
+    [HttpPatch("/roles")]
+    public async Task<ActionResult> ChangePrivileges(){
+      throw new NotImplementedException(); 
     }
 
-    //POST: api/user/ban
+
     [HttpPost("ban")]
-    public async Task<ActionResult> Ban(){
-      
+    public async Task<ActionResult> Ban() { 
+      throw new NotImplementedException(); 
     }
 
-    //POST: api/user/unban
-    [HttpPost("unban")]
-    public async Task<ActionResult> UnBan(){
-      
+    [HttpGet("ban")]
+    public async Task<ActionResult> GetBan() {
+      throw new NotImplementedException(); 
+    }
+
+    [HttpGet("unban")]
+    public async Task<ActionResult> GetUnBan() {
+      throw new NotImplementedException(); 
     }
 }
 
 
-public record PrivilegesRequest(String email, PRIVILEGES){};

@@ -1,0 +1,10 @@
+
+
+# Containerfile
+FROM postgres:15
+
+ENV POSTGRES_USER=Lililatortue
+ENV POSTGRES_PASSWORD=testing
+ENV POSTGRES_DB=db
+
+EXPOSE 5432

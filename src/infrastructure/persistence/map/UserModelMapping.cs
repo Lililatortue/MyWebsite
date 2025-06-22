@@ -1,6 +1,6 @@
 using wiwi.infrastructure.models;
 using wiwi.domain.entities;
-using interfaces.DTO;
+using wiwi.interfaces.DTO;
 
 
 
@@ -14,13 +14,20 @@ public static class UserModelMapping{
                           user.Username,
                           user.Email,
                           user.Password,
-                          user.Privilege.ToString(),
+                          user.Privilege.ToString().ToLower(),
                           user.BannedFlag);
   }
-
+  
   public static UserDTO ToDTO(UserModel user){
     return new UserDTO(user.Username, user.Email, user.Role);
 
   }
+  
+  public static List<UserDTO> ToDTO(List<UserModel> models){
+    List<UserDTO> listDTO = new List<UserDTO>(); 
+    foreach(var m in models)
+       listDTO.Add(ToDTO(m));
 
+    return listDTO;
+  }
 }

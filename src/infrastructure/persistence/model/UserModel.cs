@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
-
+using System.Diagnostics.CodeAnalysis;
 namespace wiwi.infrastructure.models;
 
 [Table("web_user")]
@@ -9,36 +9,37 @@ namespace wiwi.infrastructure.models;
 public class UserModel{
   [Key]
   [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-  public int Id {get; set;}
+  public int id {get; set;}
   
   [Required]
   [MaxLength(50)]
   [Column("username")]
-  public string Username  {get; set;}
+  public required string Username  {get; set;}
   
   [Required]
   [EmailAddress]
   [Column("email")]
-  public string Email {get; set;}
+  public required string Email {get; set;}
 
   [Required]
   [Column("password")]
-  public string HashedPsw{get; set;}
+  public required string HashedPsw{get; set;}
   
   [Required]
   [Column("role")]
-  public string Role {get; set;}
+  public required string Role {get; set;}
   
   [Required]
   [Column("isbanned")]
-  public bool Banned {get; set;}
-  
-  public UserModel(){}
+  public required bool Banned {get; set;}
 
-  internal UserModel(string username, string email, string password, string role, bool banned){
+  
+
+  [SetsRequiredMembers] 
+  public UserModel(string username, string email, string hashedPsw, string role, bool banned){
     Username = username;
     Email = email;
-    HashedPsw = password;
+    HashedPsw = hashedPsw;
     Role = role;
     Banned = banned;
   }

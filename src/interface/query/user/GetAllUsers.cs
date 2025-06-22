@@ -1,24 +1,23 @@
-using context.user;
-using DAL.query;
+using wiwi.interfaces.DTO;
 
-using DTO;
-using models.user;
+using wiwi.infrastructure.repository.user;
+using wiwi.infrastructure.models;
 
-using map = mapping.user;
+namespace wiwi.interfaces.query.user;
+using MAP = wiwi.infrastructure.map.user;
 
-namespace query.user;
 public record Response(int errorCode, List<UserDTO>? list);
 
 
 public class GetAllUsersQuery: IQuery<Response>{
   //variable
-  private readonly UserDbContext _context;
+  private readonly IUserRepository _repo;
   private readonly (int min, int max) _range;
 
   //constructor
 
-  public GetAllUsersQuery(UserDbContext context,(int min, int max) range){
-   _context = context; 
+  public GetAllUsersQuery(IUserRepository repo,(int min, int max) range){
+   _repo = repo; 
    _range = range;
   }
 
@@ -28,14 +27,9 @@ public class GetAllUsersQuery: IQuery<Response>{
   public async Task<Response> Execute(){
     try{
     
-      List<UserModel> users = await _context.Users
-                              .Where(u => u.id >=_range.min && u.id <=_range.max)
-                              .ToListAsync();
-
-
-      List<UserDTO> list = map.UserMapping.ModelToDTO(users).ToList(); //transform list
-      
-      return new(200, list);
+      List<UserModel> model =  _repo.FetchAll(_range.min,_range.max);//transform list
+      List<UserDTO>   user = MAP.UserModelMapping.ToDTO(model); 
+      return new(200, user);
     } catch(Exception) {
 
       return new(500, null);

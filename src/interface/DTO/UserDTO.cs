@@ -1,6 +1,6 @@
 
 
-namespace interfaces.DTO;
+namespace wiwi.interfaces.DTO;
 
 
 /*

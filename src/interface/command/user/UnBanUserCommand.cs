@@ -1,10 +1,14 @@
-using context.user;
-using DAL.command;
+using wiwi.interfaces.command;
+using wiwi.interfaces.DTO;
 
-using DTO;
-using models.user;
+using wiwi.domain.entities;
+using wiwi.domain.factory;
+
+using wiwi.infrastructure.repository.user;
 
 namespace user.command;
+using MAP = wiwi.infrastructure.map.user;
+
 
 public record TUnBanAction(UserDTO dto);
 
@@ -13,48 +17,46 @@ public record TUnBanAction(UserDTO dto);
  * */
 public class UnBanUserCommand: ICommand<TUnBanAction>{
   //variables:
-  private readonly UserDbContext _context;
-  private readonly TUnBanAction _action;
-  private UserModel? _state;
+  private readonly IUserRepository _repo;
+  private User? _state;
   //constructor:
-  public UnBanUserCommand(UserDbContext context, UserDTO dto){
-    _context = context;
-    _action  = new TUnBanAction(dto); 
-  }
-
-  
+  public UnBanUserCommand(IUserRepository repo){
+    _repo = repo;
+   }
+ 
   //function:
   
-  public async Task<Response> Execute(){
+  public async Task<(int errorCode, string? message)> Execute(TUnBanAction action){
     try{
-      var user = await _context.Users.FindAsync(_action.dto.GetEmail()); 
-      if(user == null) 
-        return new Response(404, "user not found");
+      var model = _repo.FindByEmail(action.dto.GetEmail()); 
+      if(model == null) 
+        return new (404, "user not found");
      
-      _state = user;
-      
-      user.SetBannedFlag(false);
- 
-      _context.Users.Update(user);
-      await _context.SaveChangesAsync();
+      UserEntityFactory factory = new UserEntityFactory();
+      var user = factory.CreateFromStorage(model);
+      _state = user; 
 
-      return new Response(200, null);
+      user.SetBannedFlag(false);
+      
+      _repo.Update(MAP.UserModelMapping.ToModel(user));
+
+      return new (200, null);
     } catch(Exception ex) {
-      return new Response(500, ex.Message);
+      return new (500, ex.Message);
     }
   }
 
-  public Response UnExecute(){
-    if(_state is null) throw new NullReferenceException("none existante state");
+  public (int errorCode, string? message) UnExecute(){
+    if(_state is null) throw new NullReferenceException("unBanUserCommand.UnExecute not yet finish");
 
     try{
-      _context.Users.Update(_state);
-      _context.SaveChanges();
+      throw new NotImplementedException("not yet done");
+      _repo.Update(MAP.UserModelMapping.ToModel(_state));
 
-      return new Response(200, null);
+      return new (200, null);
     } catch(Exception) {
       
-      return new Response(500, "unable to UnExecute");
+      return new (500, "unable to UnExecute");
     }
   }
 }

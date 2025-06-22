@@ -4,12 +4,13 @@ using System.Net.Mail;
 
 namespace wiwi.domain.valueobjects.credentials;
 
-using cred = wiwi.domain.valueobjects.credentials;
+using CREDS = wiwi.domain.valueobjects.credentials;
 
 
 public class Credentials{
     private string _email;
     private Password _password;
+    
     
     //constructor
 
@@ -24,12 +25,12 @@ public class Credentials{
 
     //to create credentials
     public static Credentials CreateCredentials(string email, string password){
-      return new Credentials(email,cred.Password.CreateFromString(password));
+      return new Credentials(email,CREDS.Password.CreateFromString(password));
     }
 
     //to get credentials from db
     public static Credentials GetCredentials(string email,string password){
-      return new Credentials(email, cred.Password.GetHash(password));
+      return new Credentials(email, CREDS.Password.GetHash(password));
     }
 
     public string Email => _email;
@@ -63,8 +64,8 @@ internal class Password{
    *
    */
   public byte[] GetSalt() {
-    byte[] salt = new byte[16];
-    Array.Copy(_psw, 0,salt, 0, 16);
+    byte[] salt = new byte[SALT_SIZE];
+    Array.Copy(_psw, 0,salt, 0, SALT_SIZE);
     return salt;
   }
 
@@ -108,9 +109,9 @@ internal class Password{
     var pkbf2 = 
       new Rfc2898DeriveBytes(input, GetSalt(), 100000, HashAlgorithmName.SHA256); //password hashing
     byte[]hash = pkbf2.GetBytes(HASH_SIZE);
-    
+
     for(int i = 0; i < HASH_SIZE; i++) {
-     if(hash[i] != _psw[i]) return false;
+     if(hash[i] != _psw[i+SALT_SIZE]) return false;
     }
     return true;
   }
@@ -125,6 +126,13 @@ internal class Password{
     if (x < 0 || x >= _psw.Length - SALT_SIZE) throw new IndexOutOfRangeException();
     return _psw[SALT_SIZE + x]; }
   }
+
   //getter
+
   public string HashPsw => Convert.ToBase64String(_psw);
 }
+
+
+
+
+

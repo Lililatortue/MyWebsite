@@ -2,7 +2,7 @@
 
 
 
-namespace DAL.query;
+namespace wiwi.interfaces.query;
 
 public interface IQuery<TResponse>{
   Task<TResponse> Execute();

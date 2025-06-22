@@ -5,7 +5,7 @@
  * Interface for commands through-out the project
  *
  * */
-namespace interfaces.command;
+namespace wiwi.interfaces.command;
 /*
  * Command interface for action / transaction in DB
  *

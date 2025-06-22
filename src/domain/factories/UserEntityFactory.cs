@@ -1,5 +1,5 @@
 //interface
-using interfaces.DTO;
+using wiwi.interfaces.DTO;
 
 //infrastructure
 using wiwi.infrastructure.models;

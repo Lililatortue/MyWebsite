@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:15
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: Lililatortue
+      POSTGRES_PASSWORD: testing
+      POSTGRES_DB: db
+    volumes:
+      - pgdata:/var/lib/postgresql/data      
+      - ./sql:/docker-entrypoint-initdb.d:Z
+
+volumes:
+  pgdata:
